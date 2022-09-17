@@ -19,4 +19,6 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('fetch-api',  ['uses' => 'Controller@FetchApi']);
+    $router->get('search/provinces',  ['uses' => 'Controller@SearchProvince']);
+    $router->get('search/cities',  ['uses' => 'Controller@SearchCity']);
 });

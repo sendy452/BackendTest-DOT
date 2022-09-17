@@ -52,4 +52,76 @@ class Controller extends BaseController
             }
         }
     }
+
+    public function SearchProvince(Request $request)
+    {
+        $id = $request->get('id');
+
+        if ($id == null) {
+            $hasil = app('db')->table('province')->select('*')->get();
+
+            if (count($hasil) == 0) {
+                return json_encode([
+                    "status" => "error",
+                    "data" => "Province not found",
+                ]);
+            }else{
+                return json_encode([
+                    "status" => "success",
+                    "data" => $hasil,
+                ]);
+            }
+
+        }else {
+            $hasil = app('db')->table('province')->select('*')->where('province_id', '=', $id)->get();
+            
+            if (count($hasil) == 0) {
+                return json_encode([
+                    "status" => "error",
+                    "data" => "Province not found",
+                ]);
+            }else{
+                return json_encode([
+                    "status" => "success",
+                    "data" => $hasil,
+                ]);
+            }
+        }
+    }
+
+    public function SearchCity(Request $request)
+    {
+        $id = $request->get('id');
+
+        if ($id == null) {
+            $hasil = app('db')->table('city')->select('*')->get();
+
+            if (count($hasil) == 0) {
+                return json_encode([
+                    "status" => "error",
+                    "data" => "City not found",
+                ]);
+            }else{
+                return json_encode([
+                    "status" => "success",
+                    "data" => $hasil,
+                ]);
+            }
+            
+        }else {
+            $hasil = app('db')->table('city')->select('*')->where('city_id', '=', $id)->get();
+            
+            if (count($hasil) == 0) {
+                return json_encode([
+                    "status" => "error",
+                    "data" => "City not found",
+                ]);
+            }else{
+                return json_encode([
+                    "status" => "success",
+                    "data" => $hasil,
+                ]);
+            }
+        }
+    }
 }
