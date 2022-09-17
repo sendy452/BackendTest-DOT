@@ -124,4 +124,60 @@ class Controller extends BaseController
             }
         }
     }
+
+    public function SwapProvinces(Request $request)
+    {
+
+        $response = $this->SearchProvince($request);
+
+        if (json_decode($response)->status == "error") {
+            $client = new \GuzzleHttp\Client();
+
+            $response_province     = $client->get('https://api.rajaongkir.com/starter/province', [
+                'headers' => [
+                    'key' => '0df6d5bf733214af6c6644eb8717c92c',
+                ],
+                'query' => [
+                    'id' => $request->get('id'),
+                ],
+            ]);
+            
+            $array_province = $response_province->getBody()->getContents();
+            $json_province = json_decode($array_province, true);
+            $collection_province = collect($json_province);
+            $data_province = collect($collection_province->get('rajaongkir'))->get('results');
+
+            return $data_province;
+        }else{
+            return $response;
+        }
+    }
+
+    public function SwapCities(Request $request)
+    {
+
+        $response = $this->SearchCity($request);
+
+        if (json_decode($response)->status == "error") {
+            $client = new \GuzzleHttp\Client();
+
+            $response_city     = $client->get('https://api.rajaongkir.com/starter/city', [
+                'headers' => [
+                    'key' => '0df6d5bf733214af6c6644eb8717c92c',
+                ],
+                'query' => [
+                    'id' => $request->get('id'),
+                ],
+            ]);
+            
+            $array_city = $response_city->getBody()->getContents();
+            $json_city = json_decode($array_city, true);
+            $collection_city = collect($json_city);
+            $data_city = collect($collection_city->get('rajaongkir'))->get('results');
+
+            return $data_city;
+        }else{
+            return $response;
+        }
+    }
 }
