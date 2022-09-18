@@ -1,11 +1,12 @@
 <?php
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ApiTest extends TestCase
 {
+
     /**
      * A basic test example.
      *
@@ -16,9 +17,10 @@ class ApiTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testFetchingApi(){
-
-        $this->get("fetch-api");
+    public function testFetchingApi()
+    {
+        $this->get("api/fetch-api", []);
         $this->seeStatusCode(200);
+        $this->seeJsonStructure(["status","data"]);
     }
 }
