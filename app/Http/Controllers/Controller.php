@@ -9,6 +9,11 @@ use function PHPUnit\Framework\isEmpty;
 
 class Controller extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['login', 'FetchApi',]]);
+    }
+
     public function FetchApi()
     {
         $client = new \GuzzleHttp\Client();
