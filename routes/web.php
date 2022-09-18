@@ -24,4 +24,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->get('search/provinces/swap',  ['uses' => 'Controller@SwapProvinces']);
     $router->get('search/cities/swap',  ['uses' => 'Controller@SwapCities']);
+
+    $router->post('/login', 'UserController@login' );
 });
