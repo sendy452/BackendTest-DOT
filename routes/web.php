@@ -21,9 +21,4 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('fetch-api',  ['as' => 'fetching.api', 'uses' => 'Controller@FetchApi']);
     $router->get('search/provinces',  ['uses' => 'Controller@SearchProvince']);
     $router->get('search/cities',  ['uses' => 'Controller@SearchCity']);
-
-    $router->get('search/provinces/swap',  ['uses' => 'Controller@SwapProvinces']);
-    $router->get('search/cities/swap',  ['uses' => 'Controller@SwapCities']);
-
-    $router->post('/login', 'UserController@login' );
 });
